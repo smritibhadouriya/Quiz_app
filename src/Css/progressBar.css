@@ -1,0 +1,16 @@
+/* progressBar.css */
+
+.progress-bar-container {
+  width: 1%;
+  background-color: #76c7c0;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.progress-bar {
+  height: 20px;
+  background-color: #76c7c0;
+  border-radius: 25px;
+  transition: width 0.4s ease-in-out;
+}

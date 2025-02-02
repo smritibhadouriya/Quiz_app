@@ -1,0 +1,166 @@
+/* General body styling */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(135deg, #6e8efb, #a777e3);
+}
+
+/* Main quiz app container */
+.quiz-app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #6e8efb, #a777e3);
+  color: white;
+  text-align: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Title styling */
+.quiz-app h1 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+  color: #fff;
+  text-shadow: 2px 2px #000;
+}
+
+/* General button styling */
+.quiz-app button {
+  padding: 15px 30px;
+  font-size: 1.2em;
+  color: #fff;
+  background-color: #4c6ef5;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.quiz-app button:hover {
+  background-color: #3b5bdb;
+  transform: translateY(-2px);
+}
+
+.quiz-app button:active {
+  background-color: #364fc7;
+  transform: translateY(0);
+}
+
+
+/* Progress bar container */
+.progress-bar-container {
+  width: 80%;
+  background-color: #e0e0df;
+  border-radius: 25px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+/* Progress bar styling */
+.progress-bar {
+  height: 20px;
+  background-color: #76c7c0;
+  border-radius: 25px;
+  transition: width 0.4s ease-in-out;
+}
+
+
+/* Margin for divs inside the quiz app */
+.quiz-question {
+  font-family: Arial, sans-serif;
+  margin: 200px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+}
+
+.quiz-question h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.quiz-question .progress-bar {
+  margin-bottom: 10px;
+}
+
+.quiz-question div {
+  margin-bottom: 10px;
+}
+
+.quiz-navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.quiz-navigation button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.previousButton {
+  background-color: #007bff;
+  color: white;
+}
+
+.previousButton:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.nextButton {
+  background-color: #28a745;
+  color: white;
+}
+
+.nextButton:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.leaveButton {
+  background-color: #dc3545;
+  color: white;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: 2px solid #007bff;
+  border-radius: 5px;
+  background-color: white;
+  color: #007bff;
+  cursor: pointer;
+  margin: 5px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Styling when the button is hovered over */
+button:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+/* Styling when the button is disabled */
+button:disabled {
+  background-color: #cccccc;
+  border-color: #cccccc;
+  color: #666666;
+  cursor: not-allowed;
+}
+
+/* Styling for a selected option */
+.selected {
+  background-color: #007bff;
+  color: white;
+}
