@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Question from './Question';
 import ProgressBar from './ProgressBar';
@@ -11,25 +10,68 @@ const QuizApp = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [timeLeft, setTimeLeft] = useState(10); // seconds for each question
-  const [error, setError] = useState(null);
-  const [quizStarted, setQuizStarted] = useState(false); // State to track if quiz has started
+  const [quizStarted, setQuizStarted] = useState(false);
   const timerRef = useRef();
   const navigate = useNavigate();
 
-
   useEffect(() => {
-    const fetchQuestions = async () => {
-      try {
-        const response = await axios.get('/Uw5CrX'); // Use the full URL
-        console.log('Fetched questions:', response.data); // Log fetched questions
-        setQuestions(response.data.questions); // Adjusted to access the correct array
-      } catch (err) {
-        setError(err.message);
-        console.error('Error fetching questions:', err);
-      }
-    };
-
-    fetchQuestions();
+    const manualQuestions = [
+      {
+        question: 'What is the basic unit of heredity?',
+        options: ['Gene', 'Chromosome', 'DNA', 'Protein'],
+        correctAnswer: 'Gene',
+      },
+      {
+        question: 'Which scientist is known as the father of genetics?',
+        options: ['Charles Darwin', 'Gregor Mendel', 'Watson', 'Crick'],
+        correctAnswer: 'Gregor Mendel',
+      },
+      {
+        question: 'Which of the following is NOT a type of evolution?',
+        options: ['Convergent', 'Divergent', 'Parallel', 'Cyclic'],
+        correctAnswer: 'Cyclic',
+      },
+        {
+          question: "What is the shape of DNA?",
+          options: ['Single helix','Double helix','Triple helix','Circular' ],
+          correctAnswer: 'Double helix',
+        },
+        {
+          question: "Which organelle contains the genetic material in eukaryotic cells?",
+          options: ['Mitochondria','Ribosome','Nucleus','Endoplasmic reticulum' ],
+          correctAnswer: 'Nucleus',
+        },
+        {
+          question: "Who is known as the father of genetics?",
+          options: ['Charles Darwin','Gregor Mendel','Watson and Crick','Lamarck' ],
+          correctAnswer: '"Gregor Mendal',
+        },
+        {
+          question: "What does a Punnett square show?",
+          options: ['The structure of DNA','Possible genetic crosses and outcomes','Evolutionary history','Chromosomal abnormalities' ],
+          correctAnswer: 'Possible genetic crosses and outcomes'
+        },
+        {
+          question: "What term describes different forms of a gene?",
+          options: ['Traits','Alleles','Chromosomes','Mutations' ],
+          correctAnswer: 'Alleles'
+        },
+        {
+          question: "What does a Punnett square show?",
+          options: ['The structure of DNA','Possible genetic crosses and outcomes','Evolutionary history','Chromosomal abnormalities' ],
+          correctAnswer: 'Possible genetic crosses and outcomes'
+        },
+        {
+          question: "What term describes different forms of a gene?",
+          options: ['Traits','Alleles','Chromosomes','Mutations' ],
+          correctAnswer: 'Alleles'
+        },
+    
+       
+       
+      
+    ];
+    setQuestions(manualQuestions);
   }, []);
 
   useEffect(() => {
@@ -69,7 +111,8 @@ const QuizApp = () => {
     }
   };
 
-  const handleAnswer = (isCorrect) => {
+  const handleAnswer = (selectedAnswer) => {
+    const isCorrect = selectedAnswer === questions[currentQuestionIndex].correctAnswer;
     if (isCorrect) {
       setScore(score + 1);
     }
@@ -85,10 +128,6 @@ const QuizApp = () => {
     navigate('/results', { state: { score, totalQuestions: questions.length } });
   };
 
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
-
   if (questions.length === 0) {
     return <div>Loading...</div>;
   }
@@ -97,16 +136,13 @@ const QuizApp = () => {
     return (
       <div className="quiz-app">
         <h1>Genetics and Evolution</h1>
-        <button  onClick={handleStartQuiz}>Start Quiz</button>
+        <button onClick={handleStartQuiz}>Start Quiz</button>
       </div>
     );
   }
 
   const currentQuestion = questions[currentQuestionIndex];
-  const progress = (currentQuestionIndex + 1) / questions.length * 100;
-  console.log('Current question index:', currentQuestionIndex); // Log current question index
-  console.log('Current question:', currentQuestion); // Log current question
-  console.log('Progress:', progress); // Log progress
+  const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
 
   return (
     <div className="quiz-question">
@@ -121,9 +157,9 @@ const QuizApp = () => {
         )}
       </ErrorBoundary>
       <div className="quiz-navigation">
-        <button  className="previousButton" onClick={handlePreviousQuestion} disabled={currentQuestionIndex === 0}>Previous</button>
-        <button  className="nextButton" onClick={handleNextQuestion} disabled={currentQuestionIndex === questions.length - 1}>Next</button>
-        <button  className="leaveButton" onClick={handleLeaveQuiz}>Leave</button>
+        <button className="previousButton" onClick={handlePreviousQuestion} disabled={currentQuestionIndex === 0}>Previous</button>
+        <button className="nextButton" onClick={handleNextQuestion} disabled={currentQuestionIndex === questions.length - 1}>Next</button>
+        <button className="leaveButton" onClick={handleLeaveQuiz}>Leave</button>
       </div>
     </div>
   );
